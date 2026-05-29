@@ -1,4 +1,4 @@
-# Python
+﻿# Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -16,16 +16,5 @@ env/
 .DS_Store
 Thumbs.db
 
-# Generated analysis outputs
-outputs/figures/*
-outputs/tables/*
-data/processed/*
-
-# Keep folder structure
-!outputs/figures/.gitkeep
-!outputs/tables/.gitkeep
-!data/processed/.gitkeep
-
 # Earlier extracted copy; canonical raw data is in data/raw/
 datasets/
-

@@ -1,4 +1,4 @@
-# COGS 109 Final Project: Air Quality and Health Impact
+﻿# COGS 109 Final Project: Air Quality and Health Impact
 
 ## Research Question
 
@@ -18,13 +18,8 @@ The main outcome variables are:
 ```text
 data/
   raw/                 Original dataset
-  processed/           Cleaned or transformed datasets
 docs/                  Project proposal and written materials
 notebooks/             Jupyter notebooks for exploration and modeling
-outputs/
-  figures/             Generated plots
-  tables/              Generated summary tables
-src/                   Reusable Python scripts
 ```
 
 ## Planned Analysis
@@ -49,9 +44,4 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run the starter data summary:
-
-```bash
-python src/eda_summary.py
-```
-
+Create notebooks inside the `notebooks/` folder and keep the analysis there so it is tracked by GitHub.

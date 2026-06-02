@@ -13,8 +13,6 @@ The primary outcome variables are:
 - `HealthImpactScore`: a continuous health impact score from 0 to 100
 - `HealthImpactClass`: a categorical health impact classification
 
-The dataset is synthetic and intended for educational use. The findings describe predictive patterns within this dataset and should not be interpreted as real-world causal evidence.
-
 ## Repository Structure
 
 ```text

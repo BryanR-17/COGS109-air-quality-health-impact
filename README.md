@@ -1,4 +1,4 @@
-﻿# COGS 109 Final Project: Air Quality and Health Impact
+# COGS 109 Final Project: Air Quality and Health Impact
 
 ## Research Question
 
@@ -6,12 +6,14 @@ How do air quality metrics and weather conditions impact human health outcomes?
 
 ## Project Overview
 
-This project analyzes the relationship between air quality, weather conditions, and public health outcomes using the Air Quality and Health Impact Dataset from Kaggle. The dataset contains 5,811 records with air quality metrics, pollutant concentrations, weather variables, and health outcome variables.
+This project analyzes relationships between air quality, weather conditions, and public health outcomes using the [Air Quality and Health Impact Dataset](https://www.kaggle.com/datasets/rabieelkharoua/air-quality-and-health-impact-dataset). The dataset contains 5,811 records and includes pollutant measurements, weather variables, and health impact indicators.
 
-The main outcome variables are:
+The primary outcome variables are:
 
-- `HealthImpactScore`: continuous health impact score from 0 to 100
-- `HealthImpactClass`: categorical health impact class
+- `HealthImpactScore`: a continuous health impact score from 0 to 100
+- `HealthImpactClass`: a categorical health impact classification
+
+The dataset is synthetic and intended for educational use. The findings describe predictive patterns within this dataset and should not be interpreted as real-world causal evidence.
 
 ## Repository Structure
 
@@ -19,24 +21,52 @@ The main outcome variables are:
 data/
   raw/                 Original dataset
 docs/                  Project proposal and written materials
-notebooks/             Jupyter notebooks for exploration and modeling
+notebooks/             Exploratory analysis and model comparisons
 ```
 
-## Planned Analysis
+## Notebooks
 
-- Explore the dataset structure, missing values, and class distribution.
-- Visualize relationships between pollution/weather variables and health outcomes.
-- Fit regression models for continuous outcomes such as `HealthImpactScore`.
-- Fit classification models for `HealthImpactClass`.
-- Compare models using cross-validation and appropriate metrics.
+### `01_exploratory_analysis.ipynb`
 
-## Important Modeling Notes
+Explores the dataset structure, missing values, class imbalance, correlations, and relationships between environmental variables and `HealthImpactScore`.
 
-- Do not use `RecordID` as a predictor.
-- Do not use `HealthImpactScore` as a predictor when modeling `HealthImpactClass`, because that can cause target leakage.
-- `HealthImpactClass` is imbalanced, so classification should be evaluated with metrics beyond accuracy, such as precision, recall, F1-score, and confusion matrices.
+### `02_regression_models.ipynb`
 
-## Getting Started
+Predicts `HealthImpactScore` using environmental variables. The notebook compares:
+
+- Multiple Linear Regression
+- Lasso Regression
+- Polynomial Regression
+- Principal Component Regression (PCR)
+
+Models are selected using 10-fold cross-validation and evaluated on a held-out test set. Polynomial Regression with degree `3` performed best, with a test RMSE of approximately `2.304` and a test R-squared value of approximately `0.972`.
+
+### `03_classification_models.ipynb`
+
+Predicts `HealthImpactClass` using environmental variables. The notebook compares:
+
+- Multiclass Logistic Regression
+- Lasso-Regularized Logistic Regression
+- K-Nearest Neighbors (KNN)
+
+The classification analysis uses a stratified train/test split and stratified 10-fold cross-validation because the classes are imbalanced. KNN with `3` neighbors and distance-based weighting achieved the highest test macro F1-score at approximately `0.311`. Logistic Regression achieved the highest balanced accuracy at approximately `0.390`.
+
+## Key Findings
+
+- AQI had the strongest positive relationship with `HealthImpactScore` during exploratory analysis.
+- Polynomial Regression substantially outperformed the linear, Lasso, and PCR regression models for predicting `HealthImpactScore`.
+- Classification was more difficult because most observations belong to `HealthImpactClass` `0`.
+- KNN achieved high overall accuracy but performed poorly on the least common classes.
+- Logistic Regression produced the highest balanced accuracy, meaning it treated minority classes more evenly than KNN.
+
+## Modeling Decisions
+
+- `RecordID` was excluded because it is only an identifier.
+- Environmental variables were used as predictors: `AQI`, `PM10`, `PM2_5`, `NO2`, `SO2`, `O3`, `Temperature`, `Humidity`, and `WindSpeed`.
+- `HealthImpactScore` was excluded when predicting `HealthImpactClass` to avoid target leakage.
+- Classification performance was evaluated using accuracy, balanced accuracy, macro F1-score, classification reports, and confusion matrices.
+
+## Setup
 
 Install dependencies:
 
@@ -44,4 +74,4 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Create notebooks inside the `notebooks/` folder and keep the analysis there so it is tracked by GitHub.
+Open the notebooks in VS Code or Jupyter and run the cells from top to bottom.

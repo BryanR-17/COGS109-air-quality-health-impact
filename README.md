@@ -28,6 +28,8 @@ notebooks/             Exploratory analysis and model comparisons
 
 Explores the dataset structure, missing values, class imbalance, correlations, and relationships between environmental variables and `HealthImpactScore`.
 
+We found out that `HealthImpactClass` is imbalanced with most observations in class **0**, we randomly choose 650 samples from class 0 to reduce imbalanced. This value was chosen to be comparable to the size of the second-largest class while retaining sufficient training data. Models were then evaluated using Accuracy, Balanced Accuracy, and Macro F1-score, with Macro F1 serving as the primary metric because it gives equal weight to each class.
+
 ### `02_regression_models.ipynb`
 
 Predicts `HealthImpactScore` using environmental variables. The notebook compares:
@@ -47,7 +49,7 @@ Predicts `HealthImpactClass` using environmental variables. The notebook compare
 - Lasso-Regularized Logistic Regression
 - K-Nearest Neighbors (KNN)
 
-The classification analysis uses a stratified train/test split and stratified 10-fold cross-validation because the classes are imbalanced. KNN with `3` neighbors and distance-based weighting achieved the highest test macro F1-score at approximately `0.311`. Logistic Regression achieved the highest balanced accuracy at approximately `0.390`.
+Among the models tested, KNN achieved the highest test accuracy (0.619) and balanced accuracy (0.365), while **Logistic Regression** achieved the highest macro F1-score (0.362). Because macro F1 places equal importance on all classes, **Logistic Regression** demonstrated the most balanced performance across the health impact categories and was therefore selected as the best overall classification model.
 
 ## Key Findings
 

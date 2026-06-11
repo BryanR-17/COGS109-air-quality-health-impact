@@ -56,8 +56,9 @@ Among the models tested, KNN achieved the highest test accuracy (0.619) and bala
 - AQI had the strongest positive relationship with `HealthImpactScore` during exploratory analysis.
 - Polynomial Regression substantially outperformed the linear, Lasso, and PCR regression models for predicting `HealthImpactScore`.
 - Classification was more difficult because most observations belong to `HealthImpactClass` `0`.
-- KNN achieved high overall accuracy but performed poorly on the least common classes.
-- Logistic Regression produced the highest balanced accuracy, meaning it treated minority classes more evenly than KNN.
+- KNN achieved the highest overall accuracy (0.619) and balanced accuracy (0.365), indicating the strongest overall predictive performance among the models tested.
+- Logistic Regression achieved the highest Macro F1-score (0.362), suggesting a more balanced performance across all health impact categories.
+- Lasso-Regularized Logistic Regression improved overall accuracy relative to the baseline Logistic Regression but did not improve Macro F1-score or balanced accuracy.
 
 ## Modeling Decisions
 
